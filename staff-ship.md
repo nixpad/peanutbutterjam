@@ -8,5 +8,5 @@ The new toolbar button will prepopulate the markdown code block for you, but you
 
 We've enjoyed using suggested changes on the PRs that built suggested changes and hope that you'll like it too. If you have any feedback, please see our [feedback issue], which is also linked to when suggestions are rendered in the UI.
 
-We also want to thank you
+We also want to thank peeps
 
