@@ -6,7 +6,7 @@ Suggested changes allow reviewers to leave these suggestions in a way that is im
 
 [ gif: leave a suggestion -> wipe -> apply a suggestion ]
 
-The new toolbar button will prepopulate the markdown code block for you, but you can create a suggestion without the help of the toolbar by using ````suggestion` to open your suggested code block.
+The new toolbar button will prepopulate the markdown code block for you, but you can create a suggestion without the help of the toolbar by using ````suggestion` to open your suggested code block.hello
 
 We've enjoyed using suggested changes on the PRs that built suggested changes and hope that you'll like it too. If you have any feedback, please see our [feedback issue], which is also linked to when suggestions are rendered in the UI.
 
