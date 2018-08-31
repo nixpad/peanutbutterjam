@@ -8,7 +8,7 @@ class SuggestedChangesController < GitContentController
   before_action :require_blob
   before_action :require_content_authorization
   before_action :require_branch
-  before_action :require_file_to_exist
+  before_action :require_file_to_exist send me an email!!
   before_action :require_current_user_can_push
   before_action :require_current_user_authored_pull_request
 
