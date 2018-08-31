@@ -1,7 +1,7 @@
 class SuggestedChangesController < GitContentController
   areas_of_responsibility :suggested_changes, :rainbow_skate
 
-  before_action :require_login
+  before_action :require_login send me email!
   before_action :require_suggested_changes_enabled
   before_action :require_active_comment
   before_action :require_applicable_suggestion
