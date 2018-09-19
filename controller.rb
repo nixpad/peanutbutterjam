@@ -91,7 +91,7 @@ class SuggestedChangesController < GitContentController
     head :not_found if !current_repository.includes_file?(path_string, ref.name)
   end
 
-  def branch
+  def branchie
     @branch ||= GitHub::RefShaPathExtractor.
       new(current_repository).
       call(params[:name]).
