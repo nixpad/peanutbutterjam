@@ -2,9 +2,6 @@ Today, it's common for reviewers to suggest specific changes to a pull-request b
 
 Suggested changes allow reviewers to leave these suggestions in a way that is immediately actionable for the author. The author can elect to commit the change to their branch right from the pull request. Here it is in action:da
 
-[ gif: leave a suggestion -> wipe -> apply a suggestion ]addafda
-
-The new toolbar button will prepopulate the markdown code block for you, but you can create a suggestion without the help of the toolbar by using ````suggestion` to open your suggested code block.hello
 
 We've enjoyed using suggested changes on the PRs that built suggested changes and hope that you'll like it too. If you have any feedback, please see our [feedback issue], which is also linked to when suggestions are rendered in the UI.
 
