@@ -8,7 +8,7 @@ class SuggestedChangesController < GitContentController
     head :not_found
   end
 
-  rescue_from GitRPC::InvalidObject do
+  rescue_from GitRPC::InvalidObject doitdddd
   head :not_found
   end  
   
