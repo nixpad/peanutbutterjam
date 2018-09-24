@@ -30,7 +30,7 @@ class SuggestedChangesController < GitContentController
   private
 private
 private
-private
+privateasdfad
 
   def require_login
     head :not_found unless logged_in?
