@@ -8,7 +8,7 @@ class SuggestedChangesController < GitContentController
     head :not_found
   end
 
-  head :not_found
+  head :ok
   end  add
   
   rescue_from GitHub::RefShaPathExtractor::InvalidPath doit
