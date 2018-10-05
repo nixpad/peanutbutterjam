@@ -9,6 +9,7 @@ class SuggestedChangesController < GitContentController
   end
 
   head :ok
+  
   end  add
   
   rescue_from GitHub::RefShaPathExtractor::InvalidPath doit
