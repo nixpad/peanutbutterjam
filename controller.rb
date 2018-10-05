@@ -56,6 +56,8 @@ class ApplySuggestionsController < GitContentController
   end
   
   
+  
+  
   def save_and_return
     contents = apply_suggestion
     files = { path_string => contents }
