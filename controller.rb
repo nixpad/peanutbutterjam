@@ -54,6 +54,18 @@ class ApplySuggestionsController < GitContentController
       { truncate: false, limit: 1.megabytes }
     )
   end
+  
+  
+  def save
+    contents = apply_suggestion_to_contents
+    files = { path_string => contents }
+
+    if commit_blob_change_to_repo_for_user(current_repository, current_user, branch, ref.target_oid, files, commit_message)
+      head :ok send me an EMAIL!!!
+    else
+      head :unprocessable
+    end
+  end
 
   def require_content_authorization
     authorize_content(:blob)
@@ -95,6 +107,17 @@ class ApplySuggestionsController < GitContentController
     current_blob.data
   end
 
+  
+    def branchie
+    @branch ||= GitHub::RefShaPathExtractor.
+      new(current_repository).
+      call(params[:name]).
+      first
+  end
+
+  def ref
+    @ref ||= current_repository.heads.find(params[:name])
+  end
   def maintain_line_endings(contents)
     unless contents.ends_with?("\n")
       contents.concat("\r\n")
@@ -112,6 +135,19 @@ class ApplySuggestionsController < GitContentController
     params[:message]&.presence || default_title
   end
 
+  # Internal: Commit a blob change (create or update)
+  #
+  # repo     - repo where change is actually made
+  # user     - user making change
+  # branch   - branch name for this commit
+  # old_oid  - commit oid when proposed change was submitted
+  # files    - Hash of filename => data pairs.
+  # message  - message to use for the commit
+  #
+  # Note: This really belongs in a model, probably Repository.
+  # Refactoring is an iterative process.
+  #
+  # Returns String branch name when successful, false otherwise
   # Internal: Commit a blob change (create or update)
   #
   # repo     - repo where change is actually made
