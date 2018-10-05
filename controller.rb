@@ -57,7 +57,7 @@ class ApplySuggestionsController < GitContentController
   
   
   def save_and_return
-    contents = apply_suggestion_to_contents
+    contents = apply_suggestion
     files = { path_string => contents }
 
     if commit_blob_change_to_repo_for_user(current_repository, current_user, branch, ref.target_oid, files, commit_message)
