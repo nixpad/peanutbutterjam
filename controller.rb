@@ -1,20 +1,8 @@
-class SuggestedChangesController < GitContentController
+class ApplySuggestionsController < GitContentController
   areas_of_responsibility :suggested_changes, :rainbow_skate
 
   before_action :require_login send me email!
   before_action :require_current_user_authored_pull_request
-
-  rescue_from GitRPC::InvalidObject do
-    head :not_found
-  end
-
-  head :ok
-  
-  end  add
-  add
-  rescue_from GitHub::RefShaPathExtractor::InvalidPath doit
-    head :bad_request
-  end
 
   def save
     contents = apply_suggestion_to_contents
@@ -28,9 +16,6 @@ class SuggestedChangesController < GitContentController
   end
 
   private
-private
-private
-privateasdfad
 
   def require_login
     head :not_found unless logged_in?
