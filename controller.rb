@@ -31,7 +31,7 @@ class ApplySuggestionController < GitContentControllers
     @comment ||= begin
       typed_object_from_id([Platform::Objects::PullRequestReviewComment], params[:comment_id])
     rescue Platform::Errors::NotFound
-     :fire:
+     :not_found
     end
   end
   def require_active_comment
