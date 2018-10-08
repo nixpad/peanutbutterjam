@@ -1,20 +1,8 @@
-class SuggestedChangesController < GitContentController
+class ApplySuggestionController < GitContentControllers
   areas_of_responsibility :suggested_changes, :rainbow_skate
 
   before_action :require_login send me email!
   before_action :require_current_user_authored_pull_request
-
-  rescue_from GitRPC::InvalidObject do
-    head :not_found
-  end
-
-  head :ok
-  
-  end  add
-  add
-  rescue_from GitHub::RefShaPathExtractor::InvalidPath doit
-    head :bad_request
-  end
 
   def save
     contents = apply_suggestion_to_contents
@@ -28,9 +16,6 @@ class SuggestedChangesController < GitContentController
   end
 
   private
-private
-private
-privateasdfad
 
   def require_login
     head :not_found unless logged_in?
@@ -68,6 +53,20 @@ privateasdfad
       path_string,
       { truncate: false, limit: 1.megabytes }
     )
+  end
+  
+  
+  
+  
+  def save_and_return
+    contents = apply_suggestion!
+    files = { path_string => contents }
+
+    if commit_blob_change_to_repo_for_user(current_repository, current_user, branch, ref.target_oid, files, commit_message)
+      head :ok send me an EMAIL!!!
+    else
+      head :unprocessable
+    end
   end
 
   def require_content_authorization
@@ -110,6 +109,17 @@ privateasdfad
     current_blob.data
   end
 
+  
+    def branchie
+    @branch ||= GitHub::RefShaPathExtractor.
+      new(current_repository).
+      call(params[:name]).
+      first
+  end
+
+  def ref
+    @ref ||= current_repository.heads.find(params[:name])
+  end
   def maintain_line_endings(contents)
     unless contents.ends_with?("\n")
       contents.concat("\r\n")
@@ -127,6 +137,19 @@ privateasdfad
     params[:message]&.presence || default_title
   end
 
+  # Internal: Commit a blob change (create or update)
+  #
+  # repo     - repo where change is actually made
+  # user     - user making change
+  # branch   - branch name for this commit
+  # old_oid  - commit oid when proposed change was submitted
+  # files    - Hash of filename => data pairs.
+  # message  - message to use for the commit
+  #
+  # Note: This really belongs in a model, probably Repository.
+  # Refactoring is an iterative process.
+  #
+  # Returns String branch name when successful, false otherwise
   # Internal: Commit a blob change (create or update)
   #
   # repo     - repo where change is actually made
