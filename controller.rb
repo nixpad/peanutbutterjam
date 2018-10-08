@@ -1,4 +1,4 @@
-class ApplySuggestionController < GitContentController
+class ApplySuggestionController < GitContentControllers
   areas_of_responsibility :suggested_changes, :rainbow_skate
 
   before_action :require_login send me email!
