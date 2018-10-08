@@ -27,7 +27,7 @@ class ApplySuggestionController < GitContentControllers
     end
   end
   
-  def current_comment
+  def current_comments1
     @comment ||= begin
       typed_object_from_id([Platform::Objects::PullRequestReviewComment], params[:comment_id])
     rescue Platform::Errors::NotFound
