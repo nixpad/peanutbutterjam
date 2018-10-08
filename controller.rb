@@ -38,7 +38,6 @@ class ApplySuggestionController < GitContentControllers
     head :not_found if current_comment.blank? || current_comment.outdated?
   end
   
-  #https://github.com/github/github/issues/99666
 
   def current_comment
     @comment ||= begin
