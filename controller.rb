@@ -14,7 +14,21 @@ class ApplySuggestionController < GitContentControllers
       head :unprocessable
     end
   end
+  
+  def require_login
+    head :not_found unless logged_in?
+  end
 
+  def require_suggested_changes_enabled
+    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)
+      head :forbidden
+    end
+  end
+
+  def require_active_comment
+    head :not_found if current_comment.blank? || current_comment.outdated?
+  end
+  
   private
 
   def require_login
@@ -38,25 +52,6 @@ class ApplySuggestionController < GitContentControllers
       nil
     end
   end
-
-  def require_applicable_suggestion
-    head :unprocessable_entity if current_comment.left_blob?
-  end
-
-  def require_blob
-    head :not_found if !current_blob
-  end
-
-  def current_blob
-    @current_blob ||= current_commit && current_repository.blob(
-      tree_sha,
-      path_string,
-      { truncate: false, limit: 1.megabytes }
-    )
-  end
-  
-  
-  
   
   def save_and_return
     contents = apply_suggestion!
@@ -72,11 +67,7 @@ class ApplySuggestionController < GitContentControllers
   def require_content_authorization
     authorize_content(:blob)
   end
-
-  def require_branch
-    head :not_found if branch.blank? || ref.blank?
-  end
-
+  
   def require_current_user_authored_pull_request
     head :forbidden unless current_comment.pull_request.user == current_user
   end
@@ -108,8 +99,7 @@ class ApplySuggestionController < GitContentControllers
   rescue IndexError
     current_blob.data
   end
-
-  
+ 
     def branchie
     @branch ||= GitHub::RefShaPathExtractor.
       new(current_repository).
