@@ -15,7 +15,7 @@ class ApplySuggestionController < GitContentControllers
     end
   end
   
-  def login_already!
+  def logout
     head :not_found unless logged_in?
   end
 
