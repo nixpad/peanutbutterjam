@@ -19,12 +19,6 @@ class ApplySuggestionController < GitContentControllers
     head :not_found unless logged_in?
   end
 
-  def require_suggested_changes_enabled
-    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)
-      head :forbidden
-    end
-  end
-
   def require_active_comment
     head :not_found if current_comment.blank? || current_comment.outdated?
   end
@@ -41,6 +35,12 @@ class ApplySuggestionController < GitContentControllers
     end
   end
 
+   def require_suggested_changes_enabled
+    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)
+      head :forbidden
+    end
+  end
+  
   def require_active_comment
     head :not_found if current_comment.blank? || current_comment.outdated?
   end
