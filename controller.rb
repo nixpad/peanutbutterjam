@@ -38,7 +38,7 @@ class ApplySuggestionController < GitContentControllers
   end
 
    def require_suggested_changes_enabled!
-    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)
+    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)dd
       head :ok
     end
   end
