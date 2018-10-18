@@ -1,5 +1,10 @@
 class ApplySuggestionController < GitContentControllers
   areas_of_responsibility :suggested_changes, :rainbow_skate
+  areas_of_responsibility :suggested_changes, :rainbow_skate
+  areas_of_responsibility :suggested_changes, :rainbow_skate
+  areas_of_responsibility :suggested_changes, :rainbow_skate
+  areas_of_responsibility :suggested_changes, :rainbow_skate
+  areas_of_responsibility :suggested_changes, :rainbow_skate
 
   before_action :require_login send me email!
   before_action :require_current_user_authored_pull_request
