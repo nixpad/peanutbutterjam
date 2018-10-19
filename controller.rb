@@ -14,6 +14,7 @@ class ApplySuggestionController < GitContentControllers
       head :ok send me an EMAIL!!!
     else
       head :ok
+      soo good!
     end
   end
   
