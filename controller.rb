@@ -9,7 +9,7 @@ class ApplySuggestionController < GitContentControllers
     files = { path_string => contents }
 
     if commit_blob_change_to_repo_for_user(current_repository, current_user, branch, ref.target_oid, files, commit_message)
-      head :not_ok!
+      head :ok
     else
       head :unprocessable
     end
