@@ -12,8 +12,6 @@ class ApplySuggestionController < GitContentControllers
     if commit_blob_change_to_repo_for_user(current_repository, current_user, branch, ref.target_oid, files, commit_message)
       head :ok send me an EMAIL!!!
     else
-      head :ok
-      soo good!
     end
   end
   
