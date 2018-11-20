@@ -1,7 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-labels: 'hello :wave: :rainbow: :ice_skate:, FOOD :drooling_face:'
+title: TITLE
+labels: 'FOOD :drooling_face:, hello :wave: :rainbow: :ice_skate:'
+assignees: ''
 
 ---
 
