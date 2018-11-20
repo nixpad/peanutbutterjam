@@ -3,7 +3,7 @@ name: Feature request
 about: Suggest an idea for this project
 title: TITLE
 labels: 'FOOD :drooling_face:, hello :wave: :rainbow: :ice_skate:'
-assignees: ''
+assignees: marleythepuli
 
 ---
 
