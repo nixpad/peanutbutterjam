@@ -1,0 +1,12 @@
+---
+name: Custom issue templatessss
+about: Describe this issue template's purpose here.
+title: ''
+labels: ''
+assignees: ''
+custom_fields: 
+
+---
+
+test this custom template out
+hello
