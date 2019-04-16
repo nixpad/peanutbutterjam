@@ -4,6 +4,7 @@ about: Create a report to help us improve
 title: "[BUGGY]"
 labels: aaaaa, bbbbb, ccccc
 assignees: nixpad
+custom_fields: 
 
 ---
 
