@@ -1,0 +1,7 @@
+contact_links:
+ - name: IRC
+   url: http://example.com
+   about: Chat
+ - name: Slack
+   url: http://example.com/slack
+   about: Chat elsewhere
