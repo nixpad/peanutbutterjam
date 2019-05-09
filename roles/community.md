@@ -1,1 +1,3 @@
-adfad
+---
+type: Resource
+---
