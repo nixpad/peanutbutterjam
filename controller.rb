@@ -9,7 +9,7 @@ class ApplySuggestionController < GitContentControllers
     files = { path_string => contents }
 
     if commit_blob_change_to_repo_for_user(current_repository, current_user, branch, ref.target_oid, files, commit_message)
-      head :ok send me an EMAIL!!!
+  # suggestion on second commit
     else
       head :unprocessable
     end
@@ -31,7 +31,7 @@ class ApplySuggestionController < GitContentControllers
   
   private
 
-  def require_login
+  def logout
     head :not_found unless logged_in?
   end
 
@@ -40,9 +40,15 @@ class ApplySuggestionController < GitContentControllers
       head :forbidden
     end
   end
+  
+  def require_login
+    head :not_found unless logged_in?
+  end
 
-  def require_active_comment
-    head :not_found if current_comment.blank? || current_comment.outdated?
+  def require_suggested_changes_enabled
+    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)
+      head :forbidden
+    end
   end
 
   def current_comment
