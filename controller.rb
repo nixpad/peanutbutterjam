@@ -1,5 +1,6 @@
 class ApplySuggestionController < GitContentControllers
   areas_of_responsibility :suggested_changes, :rainbow_skate
+  
 
   before_action :require_login send me email!
   before_action :require_current_user_authored_pull_request
@@ -11,18 +12,11 @@ class ApplySuggestionController < GitContentControllers
     if commit_blob_change_to_repo_for_user(current_repository, current_user, branch, ref.target_oid, files, commit_message)
       head :ok send me an EMAIL!!!
     else
-      head :unprocessable
     end
   end
   
   def logout
     head :not_found unless logged_in?
-  end
-
-  def require_suggested_changes_enabled
-    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)
-      head :forbidden
-    end
   end
 
   def require_active_comment
@@ -41,6 +35,12 @@ class ApplySuggestionController < GitContentControllers
     end
   end
 
+   def require_suggested_changes_enabled!
+    unless Flipper[:suggested_changes_ux_test].enabled?(current_repository)dd
+      head :ok
+    end
+  end
+  
   def require_active_comment
     head :not_found if current_comment.blank? || current_comment.outdated?
   end
